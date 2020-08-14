@@ -6,7 +6,9 @@
   "author": "Kosta Korenkov <kosta@korenkov.net>",
   "license": "MIT",
   "scripts": {
-    "b": "./node_modules/.bin/buidler"
+    "b": "buidler",
+    "run-node": "buidler node",
+    "test": "buidler test --network localhost"
   },
   "devDependencies": {
     "@nomiclabs/buidler": "^1.4.3",
@@ -16,6 +18,7 @@
     "@types/chai": "^4.2.12",
     "@types/mocha": "^8.0.1",
     "@types/node": "^14.0.27",
+    "@types/node-fetch": "^2.5.7",
     "buidler-gas-reporter": "^0.1.3",
     "chai": "^4.2.0",
     "ethereum-waffle": "^3.0.0",
@@ -24,6 +27,7 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^3.1.0"
+    "@openzeppelin/contracts": "^3.1.0",
+    "node-fetch": "^2.6.0"
   }
 }
