@@ -1,0 +1,67 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: PaymentSplitter
+    network: mainnet
+    source:
+      address: "0xe82ef486971ce2f1797b5fc544ecb2b262623d19"
+      abi: PaymentSplitter
+      startBlock: 10405663
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Payee
+        - Payouts
+      abis:
+        - name: PaymentSplitter
+          file: ./abis/PaymentSplitter.json
+      callHandlers:
+        - function: splitERC20(address[],uint256[],address)
+          handler: handleSplitDAI
+      file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: BountyPayout
+    network: mainnet
+    source:
+      address: "0x600932fc01b906967a98d4d13c779c64347755b5"
+      abi: BountyPayout
+      startBlock: 10240266
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Payee
+        - Payouts
+      abis:
+        - name: BountyPayout
+          file: ./abis/BountyPayout.json
+      eventHandlers:
+        - event: Payout(indexed bytes32,indexed uint8,indexed address,uint256,uint256)
+          handler: handlePayout
+      file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: BountyPayoutOld
+    network: mainnet
+    source:
+      address: "0x572d03fd45e85d5ca0bcd3679c99000d23a6b8f1"
+      abi: BountyPayout
+      startBlock: 9152335
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Payee
+        - Payouts
+      abis:
+        - name: BountyPayout
+          file: ./abis/BountyPayout.json
+      eventHandlers:
+        - event: Payout(indexed bytes32,indexed uint8,indexed address,uint256,uint256)
+          handler: handlePayout
+      file: ./src/mapping.ts

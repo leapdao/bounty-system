@@ -1,0 +1,34 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "bountyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "payoutType",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "paymentId",
+        "type": "uint256"
+      }
+    ],
+    "name": "Payout",
+    "type": "event"
+  }
+]
