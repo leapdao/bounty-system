@@ -33,13 +33,13 @@ export function handlePayout(event: PayoutEvent): void {
   )
 }
 
-export function handleSplitERC20(call: SplitERC20Call): void {
+export function handleSplitDAI(call: SplitERC20Call): void {
   // count only splits coming from LeapDAO Safes
   if (!payers.includes(call.from.toHex())) return;
 
   // count only DAI splits
   if (call.inputs._tokenAddr.toHex() !== '0x6b175474e89094c44da98b954eedeac495271d0f') return;
-  
+
   let payeeAddresses = call.inputs._recipients
   let payeeAmounts = call.inputs._splits
   for (let i = 0; i < call.inputs._recipients.length; i++) {
