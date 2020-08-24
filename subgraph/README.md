@@ -27,5 +27,19 @@ Query URL: `https://api.thegraph.com/subgraphs/name/leapdao/leapdao-bounties`
 
 Playground URL: https://thegraph.com/explorer/subgraph/leapdao/leapdao-bounties/
 
-# Example requests
+## Example requests
 
+Payouts per address:
+
+```graphql
+{
+  payee(id:"0x51bab87c42d384d1cd3056d52d97c84ddaa65fe4") {
+    id
+    payouts {
+      id
+      amount
+      timestamp
+    }
+  }
+}
+```
