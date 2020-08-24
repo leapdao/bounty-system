@@ -16,12 +16,14 @@ const HighlighDecimals = (number: BigInt) => {
 
 const renderRepPoint = (p: ReputationPoint) =>
   <tr>
-    <td style={{ textAlign: 'right', fontSize: '80%', color: '#77838f' }}>
-      <a href={`https://etherscan.io/tx/${p.id}`}>
+    <td style={{ textAlign: 'right', fontSize: '80%' }}>
+      <a href={`https://etherscan.io/tx/${p.id}`} style={{ textDecoration: 'none' }}>
        {formatEthereumTimestamp(p.timestamp)}
       </a>
     </td>
-    <td>{formatWei(p.amount)}</td>
+    <td>{formatWei(p.reputation || '0')}{' '}
+      <span style={{ fontSize: '80%', color: '#77838f' }}>of {formatWei(p.amount)}</span>
+    </td>
   </tr>;
 
 const App = () => {

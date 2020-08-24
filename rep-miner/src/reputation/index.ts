@@ -1,7 +1,10 @@
-import { ReputationPoint, AccountReputationPoints } from "../types";
+import { AccountReputationPoints } from "../types";
 
 const factor10 = 10 ** 10;
 const REPUTATION_HALVING_CYCLE = 7776000; // 90 days
+
+const repCyclesSinceDate = (ethTimestamp: number) =>
+  (Math.floor(Date.now() / 1000) - ethTimestamp) / REPUTATION_HALVING_CYCLE;
 
 const decay = (amount: bigint, cycle: number): bigint => {
   if (cycle > 7) {
@@ -19,24 +22,28 @@ const decay = (amount: bigint, cycle: number): bigint => {
   return decay(amount / BigInt(2), cycle - 1);
 };
 
-const reputationForAccount = (reputationPoints: ReputationPoint[]) =>
-  reputationPoints.reduce((rep, pay) => {
-    const cycle =
-      (Math.floor(Date.now() / 1000) - pay.timestamp) /
-      REPUTATION_HALVING_CYCLE;
-    const decayed = decay(BigInt(pay.amount), cycle);
-    return rep + decayed;
-  }, BigInt(0));
-
-const reputationForAccounts = (accountsData: AccountReputationPoints[]) => {
-  const reputationPerMember = accountsData.map((data) => ({
-    ...data,
-    reputation: reputationForAccount(data.points),
+const reputationForAccount = ({ account, points }: AccountReputationPoints) => {
+  const repPointsWithDecay = points.map((point) => ({
+    ...point,
+    reputation: decay(
+      BigInt(point.amount),
+      repCyclesSinceDate(point.timestamp)
+    ),
   }));
-  return reputationPerMember.sort(
-    (a, b) => Number(b.reputation) - Number(a.reputation)
-  );
+  return {
+    account,
+    reputation: repPointsWithDecay.reduce(
+      (s, p) => s + p.reputation,
+      BigInt(0)
+    ),
+    points: repPointsWithDecay,
+  };
 };
+
+const reputationForAccounts = (accountsData: AccountReputationPoints[]) =>
+  accountsData
+    .map(reputationForAccount)
+    .sort((a, b) => Number(b.reputation) - Number(a.reputation));
 
 export {
   REPUTATION_HALVING_CYCLE,
