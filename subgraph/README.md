@@ -13,12 +13,18 @@ yarn global add @graphprotocol/graph-cli
 graph auth https://api.thegraph.com/deploy/ <ACCESS_TOKEN>
 ```
 
-Deploy changes
+Deploy
+
+```sh
+yarn buildAndDeploy
+```
+
+## Development
+
+Regenerate typings once you've changed the graph schema:
 
 ```sh
 yarn codegen
-yarn build
-yarn deploy
 ```
 
 ## GraphQL based API

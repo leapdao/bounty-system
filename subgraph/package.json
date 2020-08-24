@@ -5,7 +5,8 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy leapdao/leapdao-bounties --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/"
+    "deploy": "graph deploy leapdao/leapdao-bounties --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/",
+    "buildAndDeploy": "yarn codegen && yarn build && yarn deploy"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "^0.18.0",
