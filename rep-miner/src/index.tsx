@@ -34,34 +34,42 @@ const App = () => {
       setReputationPoints(reputationForAccounts(repPoints))
     );
   }, []);
-  if (!reputationPoints) {
-    return <div>Calculating..</div>;
-  }
 
   const toggleExpanded = (account: string) =>
     setExpanded(expanded === account ? "" : account);
 
   const showExpandable = (account: string) =>
-    expanded === account ? 'table-row-group' : 'none'
+    expanded === account ? 'table-row-group' : 'none';
 
-  return <table style={{ border: 0, borderSpacing: '7px' }}>
-    <thead>
-      <th>Account</th>
-      <th>Reputation</th>
-    </thead>
-    {reputationPoints.map(({ account, reputation, points }) => (
-      <Fragment>
-        <tr style={{ cursor: 'pointer' }} onClick={() => toggleExpanded(account)}>
-          <td>{account}</td>
-          <td style={{ textAlign: 'right' }}>{HighlighDecimals(reputation)}</td>
-        </tr>
-        <tbody style={{ display: showExpandable(account) }}>
-          {points.
-            sort((a, b) => b.timestamp - a.timestamp).
-            map(p => renderRepPoint(p))}
-        </tbody>
-      </Fragment>))}
-  </table>;
+  return (
+    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <div>
+        <p>Once you get a payout of X DAI you receive the same amount of reputation ("reputation point"). Your reputation point decays every hour then with such a speed that it is reduced by half every 90 days. Your org reputation is the sum of your decayed reputation points.</p>
+        <p>You can click the record to reveal all the individual payouts and the corresponding reputation accrued.</p>
+      </div>
+      {!reputationPoints && <div style={{ textAlign: 'center' }}>Calculating..</div>}
+      {reputationPoints && (
+        <table style={{ width: '100%', border: 0, borderSpacing: '7px' }}>
+          <thead>
+            <th>Account</th>
+            <th>Reputation</th>
+          </thead>
+          {reputationPoints.map(({ account, reputation, points }) => (
+            <Fragment>
+              <tr style={{ cursor: 'pointer' }} onClick={() => toggleExpanded(account)}>
+                <td>{account}</td>
+                <td style={{ textAlign: 'right' }}>{HighlighDecimals(reputation)}</td>
+              </tr>
+              <tbody style={{ display: showExpandable(account) }}>
+                {points.
+                  sort((a, b) => b.timestamp - a.timestamp).
+                  map(p => renderRepPoint(p))}
+              </tbody>
+            </Fragment>))}
+        </table>
+      )}
+    </div>
+  )s;
 };
 
 render(<App />, document.getElementById('app'))
