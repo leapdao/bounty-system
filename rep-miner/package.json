@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
+    "build": "parcel build index.html --public-url /rep/",
+    "deploy": "aws s3 sync ./dist s3://bounties.leapdao.org/rep/ --acl public-read",
     "test": "jest src/ --coverage"
   },
   "dependencies": {

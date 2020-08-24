@@ -3,5 +3,19 @@
 ## Quick start
 
 ```sh
-../node_modules/.bin/parcel build --public-url /rep/ index.html
+yarn
+yarn start
+```
+
+## Deployment
+
+```sh
+yarn build
+AWS_PROFILE=cyfin yarn deploy
+```
+
+## Development
+
+```sh
+yarn test
 ```
