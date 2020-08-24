@@ -1,6 +1,7 @@
 type Payout @entity {
   id: ID!
   payee: Payee!
+  source: String
   timestamp: BigInt!
   amount: BigInt!
 }
