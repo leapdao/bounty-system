@@ -66,6 +66,18 @@ describe("#reputationForAccount", () => {
     );
   });
 
+  test("decay 720 days", () => {
+    const points = [
+      {
+        amount: "1400000000000000000000",
+        timestamp: Math.floor(NOW / 1000) - REPUTATION_HALVING_CYCLE * 8,
+      },
+    ];
+    expect(reputationForAccount(points)).toEqual(
+      BigInt("0")
+    );
+  });
+
   test("sums up all the reputation points with decay", () => {
     const points = [
       {

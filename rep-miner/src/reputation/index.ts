@@ -4,7 +4,7 @@ const factor10 = 10 ** 10;
 const REPUTATION_HALVING_CYCLE = 7776000; // 90 days
 
 const decay = (amount: bigint, cycle: number): bigint => {
-  if (cycle > 8) {
+  if (cycle > 7) {
     // short circuit for very old payouts
     // after two years (8 cycles) the biggest possible payout 1400 is yielding just 5 rep.
     return BigInt(0);
