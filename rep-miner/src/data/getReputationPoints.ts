@@ -12,6 +12,7 @@ export default (): Promise<AccountReputationPoints[]> =>
             payees(first: 40) {
               id
               payouts {
+                id
                 amount
                 timestamp
               }

@@ -1,4 +1,5 @@
 export type ReputationPoint = {
+  id: string;
   amount: string;
   timestamp: number;
 };
