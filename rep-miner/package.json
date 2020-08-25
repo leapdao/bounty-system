@@ -7,7 +7,7 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "rm -rf dist/ && parcel build index.html --public-url /rep/ && size-limit",
-    "deploy": "aws s3 sync ./dist s3://bounties.leapdao.org/rep/ --acl public-read",
+    "deploy": "aws s3 sync ./dist s3://bounties.leapdao.org/rep/ --acl public-read --delete && aws cloudfront create-invalidation --distribution-id E30EX456XUV5TK --paths '/*'",
     "test": "jest src/ --coverage"
   },
   "size-limit": [{
