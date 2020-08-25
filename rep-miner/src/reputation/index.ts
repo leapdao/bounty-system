@@ -1,34 +1,27 @@
 import { AccountReputationPoints } from "../types";
 
-const factor10 = 10 ** 10;
-const REPUTATION_HALVING_CYCLE = 7776000; // 90 days
+const factor18 = 10 ** 18;
+const HOURS_TO_HALVE = 2160; // 90 days
 
-const repCyclesSinceDate = (ethTimestamp: number) =>
-  (Math.floor(Date.now() / 1000) - ethTimestamp) / REPUTATION_HALVING_CYCLE;
+const hoursSince = (ethTimestamp: number) =>
+  Math.floor((Date.now() / 1000 - ethTimestamp) / 3600);
 
-const decay = (amount: bigint, cycle: number): bigint => {
-  if (cycle > 7) {
-    // short circuit for very old payouts
-    // after two years (8 cycles) the biggest possible payout 1400 is yielding just 5 rep.
-    return BigInt(0);
-  }
-  if (amount < 2) return amount;
-  if (cycle < 1)
-    return (
-      amount -
-      ((amount / BigInt(2)) * BigInt(Math.floor(cycle * factor10))) /
-        BigInt(factor10)
-    );
-  return decay(amount / BigInt(2), cycle - 1);
+// the formula is `decayed = amount * 1/2 ** (hoursSince/2160)`
+// using factor18 to handle BigInt arithmethic
+const decay = (amount: bigint, ethTimestamp: number) => {
+  const percentRemains = BigInt(
+    Math.floor(
+      0.5 ** (hoursSince(ethTimestamp) / HOURS_TO_HALVE) * factor18
+    )
+  );
+  const result = (amount * percentRemains) / BigInt(factor18);
+  return result < 0 ? BigInt(0) : result;
 };
 
 const reputationForAccount = ({ account, points }: AccountReputationPoints) => {
   const repPointsWithDecay = points.map((point) => ({
     ...point,
-    reputation: decay(
-      BigInt(point.amount),
-      repCyclesSinceDate(point.timestamp)
-    ),
+    reputation: decay(BigInt(point.amount), point.timestamp),
   }));
   return {
     account,
@@ -46,7 +39,6 @@ const reputationForAccounts = (accountsData: AccountReputationPoints[]) =>
     .sort((a, b) => Number(b.reputation) - Number(a.reputation));
 
 export {
-  REPUTATION_HALVING_CYCLE,
   reputationForAccount,
   reputationForAccounts,
 };

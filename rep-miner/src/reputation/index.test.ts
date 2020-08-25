@@ -29,11 +29,11 @@ describe("#reputationForAccount", () => {
     ];
     expect(reputationForAccount(account(points))).toEqual({
       account: "0x123",
-      reputation: BigInt("261939351860100000000"),
+      reputation: BigInt("261915937302852907520"),
       points: [
         {
           ...points[0],
-          reputation: BigInt("261939351860100000000"),
+          reputation: BigInt("261915937302852907520"),
         },
       ],
     });
@@ -43,17 +43,17 @@ describe("#reputationForAccount", () => {
     const points = [
       {
         id: "0x1-0x2",
-        amount: "262000000000000000000",
+        amount: "300000000000000000000",
         timestamp: t45daysAgo,
       },
     ];
     expect(reputationForAccount(account(points))).toEqual({
       account: "0x123",
-      reputation: BigInt("196500000000000000000"),
+      reputation: BigInt("212132034355964275200"),
       points: [
         {
           ...points[0],
-          reputation: BigInt("196500000000000000000"),
+          reputation: BigInt("212132034355964275200"),
         },
       ],
     });
@@ -99,7 +99,7 @@ describe("#reputationForAccount", () => {
     });
   });
 
-  test("decay 720 days and older — returns 0 right away", () => {
+  test("decay 720 days", () => {
     const points = [
       {
         id: "0x1-0x2",
@@ -109,11 +109,11 @@ describe("#reputationForAccount", () => {
     ];
     expect(reputationForAccount(account(points))).toEqual({
       account: "0x123",
-      reputation: BigInt("0"),
+      reputation: BigInt("5468750000000000000"),
       points: [
         {
           ...points[0],
-          reputation: BigInt("0"),
+          reputation: BigInt("5468750000000000000"),
         },
       ],
     });
@@ -134,7 +134,7 @@ describe("#reputationForAccount", () => {
     ];
     expect(reputationForAccount(account(points))).toEqual({
       account: "0x123",
-      reputation: BigInt("356000000000000000000"),
+      reputation: BigInt("343132034355964275200"),
       points: [
         {
           ...points[0],
@@ -142,7 +142,7 @@ describe("#reputationForAccount", () => {
         },
         {
           ...points[1],
-          reputation: BigInt("225000000000000000000"),
+          reputation: BigInt("212132034355964275200"),
         },
       ],
     });
@@ -179,10 +179,10 @@ describe("#reputationForAccounts", () => {
         points: [
           {
             ...accounts[1].points[0],
-            reputation: BigInt("225000000000000000000"),
+            reputation: BigInt("212132034355964275200"),
           },
         ],
-        reputation: BigInt("225000000000000000000"),
+        reputation: BigInt("212132034355964275200"),
       },
       {
         ...accounts[0],

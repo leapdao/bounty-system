@@ -44,7 +44,7 @@ const App = () => {
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto' }}>
       <div>
-        <p>Once you get a payout of X DAI you receive the same amount of reputation ("reputation point"). Your reputation point decays every hour then with such a speed that it is reduced by half every 90 days. Your org reputation is the sum of your decayed reputation points.</p>
+        <p>Once you get a payout of X DAI you receive the same amount of reputation ("reputation point"). Your reputation point decays exponentially then with such a speed that it is reduced by half every 90 days. Your org reputation is the sum of your decayed reputation points.</p>
         <p>You can click the record to reveal all the individual payouts and the corresponding reputation accrued.</p>
       </div>
       {!reputationPoints && <div style={{ textAlign: 'center' }}>Calculating..</div>}
