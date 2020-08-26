@@ -51,6 +51,7 @@ const App = () => {
 
   return (
     <main style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <h1>LeapDAO internal reputation</h1>
       <div>
         <p>Once you get a payout of X DAI you receive the same amount of reputation ("reputation point"). Your reputation point decays exponentially then with such a speed that it is reduced by half every 90 days. Your org reputation is the sum of your decayed reputation points.</p>
         <p>You can click the record to reveal all the individual payouts and the corresponding reputation accrued.</p>
