@@ -28,15 +28,16 @@ const App = () => {
     (p: ReputationPoint) =>
       <tr>
         <td style={{ textAlign: 'right', fontSize: '80%' }}>
-          <a href={`https://etherscan.io/tx/${p.id.split('-')[0]}`} style={{ textDecoration: 'none' }}>
+          <a href={`https://etherscan.io/tx/${p.id.split('-')[0]}`}>
           {formatEthereumTimestamp(p.timestamp)}
           </a>
+          {' '}
+          <span style={{ display: 'inline-block', width: '60px' }}>
+            {formatWei(p.amount)} DAI
+          </span>
         </td>
         <td style={{ textAlign: 'right' }}>
           {HighlighDecimals(p.reputation || BigInt('0'), showDecimals)}
-        </td>
-        <td style={{ fontSize: '80%', color: '#77838f', whiteSpace: 'nowrap' }}>
-        of {formatWei(p.amount)} DAI
         </td>
       </tr>,
    [showDecimals]
@@ -61,14 +62,12 @@ const App = () => {
           <thead>
             <th>Account</th>
             <th>Reputation</th>
-            <th></th>
           </thead>
           {reputationPoints.map(({ account, reputation, points }) => (
             <Fragment>
               <tr style={{ cursor: 'pointer' }} onClick={() => toggleExpanded(account)}>
                 <td>{account}</td>
                 <td style={{ textAlign: 'right' }}>{HighlighDecimals(reputation, showDecimals)}</td>
-                <td></td>
               </tr>
               <tbody style={{ display: showExpandable(account) }}>
                 {points.
