@@ -46,16 +46,15 @@ const App = () => {
   const toggleExpanded = (account: string) =>
     setExpanded(expanded === account ? "" : account);
 
-  const showExpandable = (account: string) =>
-    expanded === account ? 'table-row-group' : 'none';
-
   return (
     <main style={{ maxWidth: '600px', margin: '0 auto' }}>
       <h1>LeapDAO internal reputation</h1>
       <div>
         <p>Once you get a payout of X DAI you receive the same amount of reputation ("reputation point"). Your reputation point decays exponentially then with such a speed that it is reduced by half every 90 days. Your org reputation is the sum of your decayed reputation points.</p>
         <p>You can click the record to reveal all the individual payouts and the corresponding reputation accrued.</p>
-        <input type="checkbox" checked={showDecimals} onClick={() => setShowDecimals(!showDecimals)} /> Show decimals
+        <label>
+          <input type="checkbox" checked={showDecimals} onClick={() => setShowDecimals(!showDecimals)} id="showDecimals"/> Show decimals
+        </label>
       </div>
       {!reputationPoints && <div style={{ textAlign: 'center' }}>Calculating..</div>}
       {reputationPoints && (
@@ -70,11 +69,12 @@ const App = () => {
                 <td>{account}</td>
                 <td style={{ textAlign: 'right' }}>{HighlighDecimals(reputation, showDecimals)}</td>
               </tr>
-              <tbody style={{ display: showExpandable(account) }}>
+              {expanded === account && (<tbody>
                 {points.
                   sort((a, b) => b.timestamp - a.timestamp).
                   map(p => renderRepPoint(p))}
               </tbody>
+              )}
             </Fragment>))}
         </table>
       )}
