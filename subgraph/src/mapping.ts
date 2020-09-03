@@ -4,11 +4,11 @@ import { SplitERC20Call } from "../generated/PaymentSplitter/PaymentSplitter"
 import { BigInt, Bytes } from '@graphprotocol/graph-ts'
 
 let payers = new Array<string>()
-payers.push("0x27f083b6ce372a260f71305350f1e3e66efdca34")
-payers.push("0xc5cdcd5470aef35fc33bddff3f8ecec027f95b1d")
-payers.push("0xb2fb8ce072830ec4b0fe2fc45bd86a2fda67a209")
-payers.push("0x5270e80afd2b244ae76da250d7d46805cbd212fa")
-payers.push("0x755f5406032e91523f188aeee618f121fa86db67")
+payers.push("0x27f083b6ce372a260f71305350f1e3e66efdca34") // General Escrow (Gnosis Safe)
+payers.push("0xc5cdcd5470aef35fc33bddff3f8ecec027f95b1d") // StatusPay Discovery (Gnosis Multisig)
+payers.push("0xb2fb8ce072830ec4b0fe2fc45bd86a2fda67a209") // WhiteRabbit (Safe)
+payers.push("0x5270e80afd2b244ae76da250d7d46805cbd212fa") // EMO (Safe)
+payers.push("0x755f5406032e91523f188aeee618f121fa86db67") // Nervos (Safe)
 
 
 function createPayout(payeeAddress: string, amount: BigInt, source: string, timestamp: BigInt, hash: Bytes): void {
