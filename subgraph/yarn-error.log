@@ -1,0 +1,42 @@
+Arguments: 
+  /Users/troggy/.nvm/versions/node/v12.14.1/bin/node /Users/troggy/.yarn/bin/yarn.js add @graphprotocol/graph-cli @graphprotocol/graph-ts
+
+PATH: 
+  /Users/troggy/.nvm/versions/node/v12.14.1/bin:/Users/troggy/.yarn/bin:/Users/troggy/.config/yarn/global/node_modules/.bin:/Users/troggy/Library/Python/3.7/bin/:/usr/local/Cellar/zplug/2.4.2/bin:/Users/troggy/.rbenv/shims:/usr/local/bin:/Users/troggy/go/bin:/Users/troggy/Applications:/Users/troggy/.cargo/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.14.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/troggy/projects/leapdao/bounty-system/subgraph/package.json: Unexpected token } in JSON at position 266
+      at JSON.parse (<anonymous>)
+      at /Users/troggy/.yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/Users/troggy/.yarn/lib/cli.js:310:30)
+      at /Users/troggy/.yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "@leapdao/bounty-system",
+    "license": "MPL2",
+    "scripts": {
+      "codegen": "graph codegen",
+      "build": "graph build",
+      "deploy": "graph deploy leapdao/bounty-system --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/",
+    },
+    "dependencies": {
+  
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

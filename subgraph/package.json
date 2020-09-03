@@ -1,0 +1,16 @@
+{
+  "name": "@leapdao/bounty-system",
+  "author": "Kosta Korenkov <kosta@korenkov.net>",
+  "license": "MIT",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy leapdao/leapdao-bounties --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/",
+    "buildAndDeploy": "yarn codegen && yarn build && yarn deploy"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.18.0",
+    "@graphprotocol/graph-ts": "^0.18.1",
+    "ethereum-tx-decoder": "^3.0.0"
+  }
+}

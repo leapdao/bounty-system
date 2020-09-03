@@ -1,0 +1,12 @@
+type Payout @entity {
+  id: ID!
+  payee: Payee!
+  source: String
+  timestamp: BigInt!
+  amount: BigInt!
+}
+
+type Payee @entity {
+  id: ID!
+  payouts: [Payout!] @derivedFrom(field: "payee")
+}
