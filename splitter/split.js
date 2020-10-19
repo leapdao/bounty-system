@@ -4,8 +4,8 @@ const ethers = require("ethers");
 
 const printUsageAndExit = () => {
   console.log("Usage:");
-  console.log("\tnpx @bounty-system/split-tx decode <message data>");
-  console.log("\tnpx @bounty-system/split-tx encode <address 1> <value 1> [<address 2> <value 2> ...] [<token address>]");
+  console.log("\tnpx @leapdao/split-tx decode <message data>");
+  console.log("\tnpx @leapdao/split-tx encode <address 1> <value 1> [<address 2> <value 2> ...] [<token address>]");
   console.log("\nIf token address is not specified, DAI token will be used");
   process.exit(0);
 };

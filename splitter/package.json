@@ -1,5 +1,5 @@
 {
-  "name": "@bounty-system/split-tx",
+  "name": "@leapdao/split-tx",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:leapdao/bounty-system.git",
