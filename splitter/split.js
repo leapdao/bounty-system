@@ -46,7 +46,7 @@ const printDecoded = (data) => {
   console.log(
     "\nTotal:",
     ethers.utils.formatEther(
-      data[1].reduce((s, v) => s + v, ethers.BigNumber.from(0))
+      data[1].reduce((s, v) => s.add(ethers.BigNumber.from(v)), ethers.BigNumber.from(0))
     )
   );
 }
