@@ -1,6 +1,6 @@
 {
   "name": "@leapdao/split-tx",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "git@github.com:leapdao/bounty-system.git",
   "author": "Kosta Korenkov <kosta@korenkov.net>",
