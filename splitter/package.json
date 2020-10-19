@@ -9,7 +9,7 @@
     "split-tx": "./split.js"
   },
   "scripts": {
-    "run": "node split.js"
+    "start": "node split.js"
   },
   "dependencies": {
     "ethers": "^5.0.17"
