@@ -1,0 +1,17 @@
+{
+  "name": "@leapdao/split-tx",
+  "version": "1.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:leapdao/bounty-system.git",
+  "author": "Kosta Korenkov <kosta@korenkov.net>",
+  "license": "MIT",
+  "bin": {
+    "split-tx": "./split.js"
+  },
+  "scripts": {
+    "start": "node split.js"
+  },
+  "dependencies": {
+    "ethers": "^5.0.17"
+  }
+}
